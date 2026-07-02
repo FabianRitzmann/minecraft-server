@@ -1,0 +1,15 @@
+services:
+  mc-server:
+    build: .
+    restart: always
+    ports:
+      - "8888:8888"
+    environment:
+      SERVER_PORT: "8888"
+      MAX_MEMORY: "1024M"
+      MIN_MEMORY: "1024M"
+    volumes:
+      - minecraft-data:/minecraft
+
+volumes:
+  minecraft-data:
