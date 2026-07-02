@@ -15,7 +15,7 @@ ARG MC_VERSION="26.2"
 
 # Download Minecraft server jar from official Mojang servers
 RUN curl -o server.jar \
-    https://piston-data.mojang.com/v1/objects/4707d00eb834b446575d89a61a11b5d548d8c001/server.jar
+    https://piston-data.mojang.com/v1/objects/823e2250d24b3ddac457a60c92a6a941943fcd6a/server.jar
 
 # Accept the Minecraft End User License Agreement
 RUN echo "eula=true" > eula.txt
