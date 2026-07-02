@@ -4,6 +4,7 @@
 - [Description](#description)
 - [Quickstart](#quickstart)
 - [Usage](#usage)
+- [Connecting to the Server](#connecting-to-the-server)
 
 ## Description
 This repository contains the configuration for a Minecraft Java Edition server running in a Docker container. The server is hosted on a cloud VM and is accessible on port 8888.
@@ -25,7 +26,8 @@ This repository contains the configuration for a Minecraft Java Edition server r
 
 3. Start the server:
 ```bash
-   docker compose up -d
+docker compose build
+docker compose up -d
 ```
 
 4. Connect in Minecraft with your server IP on port `8888`
@@ -56,6 +58,15 @@ docker compose logs -f mc-server
 # Restart server
 docker compose restart mc-server
 ```
+
+## Connecting to the Server
+
+1. Open Minecraft (client version must match the server version)
+2. Go to **Multiplayer**
+3. Click **Add Server**
+4. Enter a **Server Name**
+5. Enter the **Server Address** as `<your-server-ip>:8888`
+6. Click **Join Server**
 
 ### Data Persistence
 Game data is stored in a Docker volume called `minecraft-data`. This means your game progress is saved even after restarting the container.
