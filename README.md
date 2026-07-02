@@ -70,3 +70,10 @@ docker compose restart mc-server
 
 ### Data Persistence
 Game data is stored in a Docker volume called `minecraft-data`. This means your game progress is saved even after restarting the container.
+
+> [!TIP]
+> After stopping the server with `docker compose down`, you can confirm your world data survived by listing the existing volumes:
+> ```bash
+> docker volume ls
+> ```
+> If `minecraft-data` still shows up in the list, your data is safe. Only run `docker compose down -v` if you intentionally want to wipe the world.
