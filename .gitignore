@@ -1,7 +1,4 @@
-# Environment files with sensitive data
-*venv
-README.md
-LICENSE
-*.env
-*.gitlab
-*.github
+# Files with sensitive data
+.gitignore
+.git/
+__pycache__/
