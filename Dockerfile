@@ -10,10 +10,7 @@ RUN apt-get update && \
     apt-get install -y curl && \
     rm -rf /var/lib/apt/lists/*
 
-# Minecraft server version to download
-ARG MC_VERSION="26.2"
-
-# Download Minecraft server jar from official Mojang servers
+# Download Minecraft server jar from official Mojang servers (Minecraft server version 26.2)
 RUN curl -o server.jar \
     https://piston-data.mojang.com/v1/objects/823e2250d24b3ddac457a60c92a6a941943fcd6a/server.jar
     
@@ -25,9 +22,15 @@ RUN echo "eula=true" > eula.txt
 ENV SERVER_PORT=8888
 ENV MAX_MEMORY="1024M"
 ENV MIN_MEMORY="1024M"
+ENV MAX_PLAYERS="20"        
+ENV DIFFICULTY="easy"       
+ENV GAME_MODE="creative"    
+
+COPY container-entrypoint.sh .
+RUN chmod +x container-entrypoint.sh
 
 # Expose the server port
 EXPOSE ${SERVER_PORT}
 
 # Start the Minecraft server with configured memory and port settings
-ENTRYPOINT ["sh", "-c", "java -Xmx${MAX_MEMORY} -Xms${MIN_MEMORY} -jar server.jar --port ${SERVER_PORT} --nogui"]
+ENTRYPOINT ["sh", "container-entrypoint.sh"]

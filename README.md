@@ -12,6 +12,7 @@ This repository contains the configuration for a Minecraft Java Edition server r
 ### Repository Contents
 - `Dockerfile` - Build instructions for the Minecraft server image
 - `docker-compose.yaml` - Container configuration with ports, volumes and environment variables
+- `container-entrypoint.sh` - Script that writes environment variables to server.properties before starting the server
 - `.gitignore` - Excludes sensitive files from the repository
 
 ## Quickstart
@@ -42,6 +43,19 @@ environment:
   SERVER_PORT: "8888"    # Change the server port
   MAX_MEMORY: "1024M"    # Maximum RAM (e.g. 2048M for 2GB)
   MIN_MEMORY: "1024M"    # Minimum RAM
+  MAX_PLAYERS: "5"        # Maximum number of players
+  DIFFICULTY: "hard"      # Game difficulty (peaceful, easy, normal, hard)
+  GAME_MODE: "survival"   # Game mode (survival, creative, adventure, spectator)
+```
+
+These variables are automatically written to `server.properties` by `container-entrypoint.sh` every time the container starts.
+
+### How server.properties works
+When the container starts, `container-entrypoint.sh` runs first and writes all environment variables into `server.properties`. This means you can configure the server from outside the container without modifying any files inside it.
+
+To use a different Minecraft version, replace the download URL in the `Dockerfile`:
+```dockerfile
+RUN curl -o server.jar 
 ```
 
 ### Useful Commands
