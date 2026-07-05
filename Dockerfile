@@ -1,5 +1,5 @@
 # Base image with Java 25 runtime environment
-From eclipse-temurin:25-jre
+FROM eclipse-temurin:25-jre
 
 # Set working directory inside the container
 WORKDIR /minecraft
