@@ -1,0 +1,4 @@
+# Files with sensitive data
+.gitignore
+.git/
+__pycache__/
